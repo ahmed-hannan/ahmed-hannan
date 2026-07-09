@@ -40,8 +40,6 @@ small, sharp interfaces and systems that hold up in production.
 ---
 
 <sub>
-  <!-- Fill these in — see SETUP.md → "Footer links" -->
-  <a href="mailto:you@example.com">Email</a> ·
-  <a href="https://www.linkedin.com/in/your-handle">LinkedIn</a> ·
-  <a href="https://your-site.dev">Website</a>
+  <a href="mailto:ahmedhanan4@gmail.com">Email</a> ·
+  <a href="https://www.linkedin.com/in/ahmedhannan2">LinkedIn</a>
 </sub>
