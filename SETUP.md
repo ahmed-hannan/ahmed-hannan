@@ -75,7 +75,29 @@ Remove any line you don't want.
 
 ---
 
-## 4. Changing the accent
+## 4. The stats card (if it shows broken)
+
+The activity card is served by the **free, shared** `github-readme-stats.vercel.app`
+instance. That host is frequently rate-limited and returns `503` for everyone
+(including the project's own demo) during busy periods — when that happens the
+card shows as a broken image for a while, then recovers on its own. Nothing in
+this repo is misconfigured; the URL and color params are correct.
+
+If you want it reliably up, deploy your **own** instance (~5 min, free):
+
+1. Fork <https://github.com/anuraghazra/github-readme-stats>.
+2. Create a GitHub **Personal Access Token** (classic, no scopes needed for
+   public stats) and deploy the fork to Vercel, setting `PAT_1` to that token.
+3. In `README.md`, swap the host in the stats URL from
+   `github-readme-stats.vercel.app` to your `your-app.vercel.app` — keep every
+   query param as-is.
+
+Self-hosting also removes the rate limits and lets `count_private=true` actually
+count your private contributions.
+
+---
+
+## 5. Changing the accent
 
 The accent is lime **`#c5d642`** (on near-black `#0a0a0a`). It appears in four
 places — swap it in each to restyle the whole profile:
