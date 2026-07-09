@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" fill="none" role="img" aria-label="Ahmed Hannan — Full-stack and applied-ML developer">
+  <defs>
+    <!-- Subtle lime glow seated behind the accent bar -->
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(150 150) rotate(0) scale(560 360)">
+      <stop offset="0" stop-color="#c5d642" stop-opacity="0.16"/>
+      <stop offset="0.55" stop-color="#c5d642" stop-opacity="0.04"/>
+      <stop offset="1" stop-color="#c5d642" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Fine grid overlay for texture, kept very low opacity -->
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.028"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="300" fill="#0a0a0a"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  <rect width="1200" height="300" fill="url(#glow)"/>
+
+  <!-- Accent bar -->
+  <rect x="128" y="94" width="4" height="112" rx="2" fill="#c5d642"/>
+
+  <!-- Eyebrow / monospace label -->
+  <text x="156" y="112"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    font-size="14" letter-spacing="3.5" fill="#c5d642">FULL-STACK · APPLIED ML</text>
+
+  <!-- Name -->
+  <text x="154" y="170"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    font-size="60" font-weight="700" letter-spacing="-1" fill="#f5f5f5">Ahmed Hannan</text>
+
+  <!-- Tagline -->
+  <text x="156" y="206"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    font-size="21" fill="#8b8b8b">Full-stack engineering with an applied-ML edge.</text>
+
+  <!-- Quiet signature, far right -->
+  <text x="1072" y="206" text-anchor="end"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    font-size="12" letter-spacing="2" fill="#3a3a3a">github.com/ahmed-hannan</text>
+</svg>
