@@ -29,6 +29,9 @@ query($login: String!) {
       totalCount
       nodes { stargazerCount }
     }
+    privateRepos: repositories(ownerAffiliations: OWNER, privacy: PRIVATE) {
+      totalCount
+    }
     contributionsCollection {
       totalCommitContributions
       restrictedContributionsCount
@@ -67,6 +70,28 @@ def fetch(login, token):
     if "errors" in payload:
         sys.exit(f"GraphQL error: {payload['errors']}")
     return payload["data"]["user"]
+
+
+def assert_token_sees_private(user):
+    """Fail if STATS_TOKEN cannot see private repositories.
+
+    A fine-grained PAT, or a classic one missing the `repo` scope, still
+    reports the aggregate restricted contribution count — that figure is
+    public once private contributions are enabled on the profile — but it
+    returns 0 private repos and silently omits private PRs and issues.
+    Publishing that understates activity, which is the thing this card exists
+    to avoid, so refuse rather than render it.
+    """
+    restricted = user["contributionsCollection"]["restrictedContributionsCount"]
+    private_repos = user["privateRepos"]["totalCount"]
+    if restricted > 0 and private_repos == 0:
+        sys.exit(
+            f"STATS_TOKEN cannot see private repositories: {restricted:,} private "
+            "contributions are reported, but 0 private repos are visible, so "
+            "private PRs and issues would be missing from the card. Use a "
+            "CLASSIC personal access token with the 'repo' scope — fine-grained "
+            "tokens do not expose private PRs and issues on the user object."
+        )
 
 
 def collect(user):
@@ -143,7 +168,9 @@ def main():
         sys.exit("STATS_TOKEN is not set. Add a classic PAT with the 'repo' "
                  "scope as a repository secret — see SETUP.md section 4.")
 
-    stats = collect(fetch(login, token))
+    user = fetch(login, token)
+    assert_token_sees_private(user)
+    stats = collect(user)
     print("rendered stats:", ", ".join(f"{label}={value:,}" for value, label in stats))
     if all(value == 0 for value, _ in stats):
         print("::warning::Every count is zero — STATS_TOKEN probably lacks the 'repo' scope.")

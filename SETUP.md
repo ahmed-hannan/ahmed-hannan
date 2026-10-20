@@ -91,7 +91,9 @@ profile settings say.
 **Setup — one time:**
 
 1. Create a classic **Personal Access Token** with the **`repo`** scope at
-   <https://github.com/settings/tokens>.
+   <https://github.com/settings/tokens>. It must be a **classic** token —
+   a fine-grained token reports `0` private repos and silently omits private
+   PRs and issues, and the script refuses to render a card from one.
 2. Add it to this repo as a secret named **`STATS_TOKEN`**
    (Settings → Secrets and variables → Actions → New repository secret).
 3. Run **Generate Stats** once by hand from the Actions tab.
