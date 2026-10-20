@@ -75,25 +75,35 @@ Remove any line you don't want.
 
 ---
 
-## 4. The stats card (if it shows broken)
+## 4. The activity card
 
-The activity card is served by the **free, shared** `github-readme-stats.vercel.app`
-instance. That host is frequently rate-limited and returns `503` for everyone
-(including the project's own demo) during busy periods — when that happens the
-card shows as a broken image for a while, then recovers on its own. Nothing in
-this repo is misconfigured; the URL and color params are correct.
+The card under **Activity** is generated in this repo rather than fetched from a
+third-party host. `.github/workflows/stats.yml` runs `.github/scripts/render_stats.py`
+daily, which queries the GitHub GraphQL API and writes `assets/stats.svg` and
+`assets/stats-light.svg`. It commits only when a number actually changes.
 
-If you want it reliably up, deploy your **own** instance (~5 min, free):
+It needs a token, and this is the important part: contributions made in **private**
+repositories are invisible to any token but your own. A shared host (such as the
+`github-readme-stats.vercel.app` instance this card used to use) queries as
+*itself*, so it reports `0` pull requests and `0` issues no matter what your
+profile settings say.
 
-1. Fork <https://github.com/anuraghazra/github-readme-stats>.
-2. Create a GitHub **Personal Access Token** (classic, no scopes needed for
-   public stats) and deploy the fork to Vercel, setting `PAT_1` to that token.
-3. In `README.md`, swap the host in the stats URL from
-   `github-readme-stats.vercel.app` to your `your-app.vercel.app` — keep every
-   query param as-is.
+**Setup — one time:**
 
-Self-hosting also removes the rate limits and lets `count_private=true` actually
-count your private contributions.
+1. Create a classic **Personal Access Token** with the **`repo`** scope at
+   <https://github.com/settings/tokens>.
+2. Add it to this repo as a secret named **`STATS_TOKEN`**
+   (Settings → Secrets and variables → Actions → New repository secret).
+3. Run **Generate Stats** once by hand from the Actions tab.
+
+Without `STATS_TOKEN` the workflow fails on purpose — falling back to the
+built-in workflow token would quietly publish public-only numbers, which is the
+problem the card exists to solve.
+
+**Changing which stats appear:** edit the `candidates` list in
+`render_stats.py`. Stats that come back as `0` are dropped automatically and the
+next candidate takes the slot, so the row never shows an empty figure. Five
+cells fit at the current spacing.
 
 ---
 
@@ -106,7 +116,7 @@ places — swap it in each to restyle the whole profile:
 |------|----------------|
 | `assets/header.svg` | Every `#c5d642` (accent bar, glow gradient stops, eyebrow). Background is `#0a0a0a`. |
 | `assets/header-light.svg` | The light-mode counterparts: bar `#a6bd1c`, eyebrow `#586b0d`, glow stops `#c5d642`. |
-| `README.md` | The stats-card URL params: `title_color`, `icon_color` = `c5d642`, `bg_color` = `0a0a0a`, `text_color` = `f5f5f5` (no `#` in URLs). |
+| `.github/scripts/render_stats.py` | The `PALETTES` dict — `accent`, `bg`, `value`, `label` for both the dark and light cards. Re-run the workflow to apply. |
 | `.github/workflows/snake.yml` | `color_snake` / `color_dots` (URL-encoded — `%23` = `#`). Re-run the workflow to apply. |
 
 Tip: pick your new hex, then find-and-replace `c5d642` (and the deeper light

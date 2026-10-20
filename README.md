@@ -25,7 +25,11 @@ small, sharp interfaces and systems that hold up in production.
 
 **Activity**
 
-[![Ahmed's GitHub stats](https://github-readme-stats.vercel.app/api?username=ahmed-hannan&show_icons=true&hide_border=true&count_private=true&include_all_commits=true&hide=contribs&bg_color=0a0a0a&title_color=c5d642&text_color=f5f5f5&icon_color=c5d642)](https://github.com/ahmed-hannan)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/stats.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/stats-light.svg">
+  <img alt="GitHub activity over the last 12 months" src="./assets/stats.svg" width="100%">
+</picture>
 
 <br>
 
