@@ -40,6 +40,6 @@ small, sharp interfaces and systems that hold up in production.
 ---
 
 <sub>
-  <a href="mailto:ahmedhanan4@gmail.com">Email</a> ·
-  <a href="https://www.linkedin.com/in/ahmedhannan2">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/ahmedhannan2">LinkedIn</a> ·
+  <a href="./AhmedHannan_Resume.pdf">Résumé</a>
 </sub>
