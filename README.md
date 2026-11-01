@@ -44,6 +44,7 @@ small, sharp interfaces and systems that hold up in production.
 ---
 
 <sub>
+  <a href="https://ahmed-hannan.github.io">Portfolio</a> ·
   <a href="https://www.linkedin.com/in/ahmedhannan2">LinkedIn</a> ·
-  <a href="./AhmedHannan_Resume.pdf">Résumé</a>
+  <a href="./AhmedHannan_Resume.pdf">Curriculum Vitae</a>
 </sub>
